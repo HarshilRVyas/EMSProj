@@ -1,0 +1,167 @@
+@model Employee
+
+<form method="post" asp-action="Edit">
+    <input type="hidden" asp-for="EmployeeId">
+
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Create Employee Details</h2>
+            <hr />
+        </div>
+        <div class="mb-3">
+            <label asp-for="FirstName"></label>
+            <input asp-for="FirstName" class="form-control" placeholder="Enter FirstName" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="LastName"></label>
+            <input asp-for="LastName" class="form-control" placeholder="Enter LastName" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Address"></label>
+            <input asp-for="Address" class="form-control" placeholder="Enter Address" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Phone"></label>
+            <input asp-for="Phone" class="form-control" placeholder="Enter Phone" />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="EmailAddress"></label>
+            <input asp-for="EmailAddress" class="form-control" placeholder="Enter Email Address" />
+            <span asp-validation-for="EmailAddress" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="DepartmentId"></label>
+            <select id="ddlDepartment" asp-for="DepartmentId" class="form-select">
+                @{
+                    <option value="0">-- Select Department --</option>
+                    foreach (var item in ViewBag.depart)
+                    {
+                        <option value="@item.DepartmentId">
+                            @item.Name
+                        </option>
+                    }
+                }
+            </select>
+        </div>
+        <div class="mb-3">
+            <label asp-for="dateOfBirth"></label>
+            <input asp-for="dateOfBirth" class="form-control" asp-format="{0:yyyy-MM-dd}" placeholder="Enter Date Of Join" />
+            <span asp-validation-for="dateOfBirth" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="dateOfJoin"></label>
+            <input asp-for="dateOfJoin" class="form-control" asp-format="{0:yyyy-MM-dd}" placeholder="Enter Date Of Join" />
+            <span asp-validation-for="dateOfJoin" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:150px">Edit</button>
+        <a asp-controller="Employee" asp-action="Index" class="btn btn-secondary" style="width:150px">
+            Back to List
+        </a>
+    </div>
+
+    <!--
+    <input type="text" id="DepartmentText">
+    <table style="width: 100%;">    
+        <tr>
+            <td style="width: 15%;">
+                <label asp-for="FirstName">First Name:</label></td>
+            <td style="width: 40%;">
+                <input type="text" asp-for="FirstName" placeholder="Enter First Name">
+                <span asp-validation-for="FirstName" class=" alert-danger"></span>
+            </td>
+            <td style="width: 15%;">
+                <label asp-for="LastName">Last Name:</label></td>
+            <td style="width: 30%;">
+                <input type="text" asp-for="LastName" placeholder="Enter Last Name">
+                <span asp-validation-for="LastName" class=" alert-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="Address">Address:</label>
+            </td>
+            <td>
+                <input type="text" asp-for="Address" placeholder="Enter Address">
+                <span asp-validation-for="Address" class=" alert-danger"></span>
+            </td>
+            <td>
+                <label asp-for="Phone">Phone:</label>
+            </td>
+            <td>
+                <input type="text" asp-for="Phone" placeholder="Enter Phone">
+                <span asp-validation-for="Phone" class=" alert-danger"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="EmailAddress">Email Address:</label>
+            </td>
+            <td>
+                <input type="text" asp-for="EmailAddress" placeholder="Enter Email Address">
+                <span asp-validation-for="EmailAddress" class=" alert-danger"></span>
+            </td>
+            <td>
+                <label asp-for="DepartmentId">Department:</label>
+            </td>
+            <td>
+                <select id="ddlDepartment">
+                    @{
+                        <option value="0">--Select Department--</option>
+                        foreach (var item in ViewBag.depart)
+                        {
+                            if (Model.DepartmentId == item.DepartmentId)
+                            {
+                                <option value="@item.DepartmentId" selected>
+                                    @item.Name
+                                </option>
+                            }
+                            else
+                            {
+                                <option value="@item.DepartmentId">
+                                    @item.Name
+                                </option>
+                            }
+                        }
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label asp-for="dateOfBirth">Date Of Birth:</label>
+            </td>
+            <td>
+                <input type="text" asp-for="dateOfBirth" placeholder="Enter Date of Birth">
+                <span asp-validation-for="dateOfBirth" class=" alert-danger"></span>
+            </td>
+            <td>
+                <label asp-for="dateOfJoin">Date Of Joining:</label>
+            </td>
+            <td>
+                <input type="text" asp-for="dateOfJoin" placeholder="Enter Date of Joining">
+                <span asp-validation-for="dateOfJoin" class=" alert-danger"></span>
+            </td>
+        </tr>
+    </table>
+    <br/>
+    <div>
+        @if (TempData["msg"] != null)
+        {
+            <div>
+                TempData["msg"]
+            </div>
+        }
+    </div>
+    <button type="submit" class="btn btn-sm btn-primary p-2">
+        <i class="bi bi-file-plus-fill"></i>Edit
+    </button>
+    <a asp-controller="Employee" asp-action="Index" 
+        class="btn btn-sm btn-warning p-2">Back To List
+    </a>
+    -->
+</form>        

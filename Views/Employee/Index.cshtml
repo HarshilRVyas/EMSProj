@@ -1,0 +1,74 @@
+@model IEnumerable<EMSProj.ViewModel.EmployeeViewModel>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Employee List</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Employee" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> &nbsp; Create New Employee
+            </a>
+        </div>
+    </div>
+    <br /><br />
+
+    <form method="post">
+        @if (Model != null)
+        {
+            <table class="table table-bordered table-striped" style="width:100%">
+                <tr>
+                    <th style="width: 15%;">
+                        <a asp-action="Index" asp-route-sortExpression="@ViewData["SortParamFirstName"]">
+                            @Html.DisplayNameFor(m => m.FirstName)
+                        </a>
+                    </th>
+                    <th style="width: 15%;">
+                        <a asp-action="Index" asp-route-sortExpression="@ViewData["SortParamLastName"]">
+                            @Html.DisplayNameFor(m => m.LastName)
+                        </a>
+                    </th>
+                    <th style="width: 15%;">Email Address</th>
+                    <th style="width: 10%;">Department</th>
+                    <th style="width: 15%;">Phone</th>
+                    <th style="width: 15%;">Action</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.FirstName</td>
+                        <td>@item.LastName</td>
+                        <td>@item.EmailAddress</td>
+                        <td>@item.DepartName</td>
+                        <td>@item.Phone</td>
+                        <td>
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-controller="Employee" asp-action="Edit" asp-route-id="@item.EmployeeId"
+                           class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
+
+                                <input type="submit" asp-controller="Employee" asp-action="Delete"
+                           asp-route-id="@item.EmployeeId" class="btn btn-danger mx-2" value="Delete">
+                                <!--
+                                <a asp-controller="Employee" asp-action="Delete" asp-route-id="@item.EmployeeId"
+                           class="btn btn-danger mx-2"> <i class="bi bi-trash-fill"></i> Delete</a>-->
+                            </div>
+
+                            <!--
+                            <a asp-controller="Employee" asp-action="Edit" asp-route-id="@item.EmployeeId"
+                       class=" btn btn-sm btn-primary"><i class="bi bi-pencil-square"></i>Edit</a>&nbsp;
+
+                            <input type="submit" asp-controller="Employee" asp-action="Delete"
+                           asp-route-id="@item.EmployeeId" class=" btn btn-sm btn-primary" value="Delete">-->
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <div>
+                No Data Currently Present !!
+            </div>
+        }
+    </form>
+</div>

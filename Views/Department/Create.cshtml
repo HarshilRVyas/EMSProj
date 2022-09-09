@@ -1,0 +1,60 @@
+@model Department
+
+<form method="post" asp-action="Create">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Create Department</h2>
+            <hr />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" placeholder="Enter Name" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description"></label>
+            <input asp-for="Description" class="form-control" placeholder="Enter Description" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <!--
+        <table style="width: 100%;">
+            <tr>
+                <td style="width: 15%;">
+                    <label asp-for="Name">Name:</label>
+                </td>
+                <td style="width: 40%;">
+                    <input type="text" asp-for="Name" placeholder="Enter Name">
+                    <span asp-validation-for="Name" class=" alert-danger"></span>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 15%;">
+                    <label asp-for="Description">Description:</label>
+                </td>
+                <td style="width: 30%;">
+                    <input type="text" asp-for="Description" placeholder="Enter Description">
+                    <span asp-validation-for="Description" class=" alert-danger"></span>
+                </td>
+            </tr>
+        </table>
+        <br />
+        -->
+        <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+        <a asp-controller="Department" asp-action="Index" class="btn btn-secondary" style="width:150px">
+            Back to List
+        </a>
+
+        <!--
+        <button type="submit" class="btn btn-sm btn-primary p-2">
+            <i class="bi bi-file-plus-fill"></i>Create
+        </button>
+        <a asp-controller="Department" asp-action="Index"
+           class="btn btn-sm btn-warning p-2">
+            Back To List
+        </a>
+        -->
+    </div>
+</form>

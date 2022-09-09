@@ -1,0 +1,78 @@
+@using EMSProj.Util
+@model IEnumerable<Department>
+
+@{
+    PageModel pager = ViewBag.Pager;
+}
+
+<div class="container p-3">
+    <form method="post">
+        <div class="row pt-4">
+            <div class="col-6">
+                <h2 class="text-primary">Employee List</h2>
+            </div>
+            <div class="col-6 text-end">
+                <a asp-controller="Department" asp-action="Create" class="btn btn-primary">
+                    <i class="bi bi-plus-circle"></i> &nbsp; Create New Department
+                </a>
+            </div>
+        </div>
+        <br /><br />
+        <div style="text-align:right;">
+            <span class="btn-group">
+                <input class="form-control" type="text" name="searchText" value="@ViewBag.searchText"
+                       placeholder="Search Text" />
+
+                <input type="submit" asp-action="Index" class="p-1 ml-2 btn btn-danger btn-sm" />
+            </span>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-12">
+                <partial name="_paginationBar" model="@pager" />
+            </div>
+        </div>
+        <br />
+        @if (Model != null)
+        {
+            <table class="table table-bordered table-striped" style="width:100%">
+                <tr>
+                    <th style="width: 30%;">
+                        <a asp-action="Index" asp-route-sortExpression="@ViewData["SortParamName"]">
+                            @Html.DisplayNameFor(m => m.Name)
+                        </a>
+                    </th>
+                    <th style="width: 30%;">
+                        <a asp-action="Index" asp-route-sortExpression="@ViewData["SortParamDescr"]">
+                            @Html.DisplayNameFor(m => m.Description)
+                        </a>
+                    </th>
+                    <th style="width: 30%;">
+                        Actions
+                    </th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>
+                            <div class="w-75 btn-group" role="group">
+                                <a asp-controller="Department" asp-action="Edit" asp-route-id="@item.DepartmentId"
+                           class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit</a>
+                                <input type="submit" asp-controller="Department" asp-action="Delete"
+                               asp-route-id="@item.DepartmentId" class="btn btn-danger mx-2" value="Delete">
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+            <div>
+                No Data Currently Present !!
+            </div>
+        }
+    </form>
+</div>

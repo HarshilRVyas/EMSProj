@@ -1,0 +1,28 @@
+﻿@using EMSProj.Util
+@model PageModel
+
+<div class="container btn-group" style="border-radius:10px; height:45px; background-color:#6c757d!important;">
+    <div class="container mt-1">
+        <ul class="pagination justify-content-end">
+            @for (var pge = @Model.StartPage; pge <= Model.EndPage; pge++)
+            {
+                <li class="page-item @(pge==Model.CurrentPage?"active":"")">
+                    @if (pge != Model.CurrentPage)
+                    {
+                        <a class="page-link" asp-action="@Model.Action" asp-route-pg="@pge"
+                   asp-route-pageSize="@Model.PageSize" asp-route-sortExpression=@Model.sortExpression>
+                            @pge
+                        </a>
+                    }
+                    else
+                    {
+                        <span class="page-link">@pge</span>
+                    }
+                </li>
+
+            }
+        </ul>
+    </div>
+</div>
+<br />
+
